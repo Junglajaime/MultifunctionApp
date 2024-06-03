@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.jrb.multifunctionapp.camera.CameraActivity
 import com.jrb.multifunctionapp.musicplayer.MusicPlayerActivity
 import com.jrb.multifunctionapp.ui.theme.MultifunctionAppTheme
 
@@ -54,7 +55,7 @@ fun MainScreen() {
         CustomOutlinedButton(
             icon = Icons.Filled.AccountCircle,
             contentDescription = "Photo Icon"
-        ){}
+        ){context.startActivity(Intent(context, CameraActivity::class.java))}
         Spacer(modifier = Modifier.height(16.dp))
         CustomOutlinedButton(
             icon = Icons.Filled.Star,

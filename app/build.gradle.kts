@@ -69,4 +69,7 @@ dependencies {
 
     implementation ("com.google.accompanist:accompanist-systemuicontroller:0.33.2-alpha")
     implementation ("androidx.media3:media3-exoplayer:1.1.1")
+
+    //Coil
+    implementation ("io.coil-kt:coil-compose:1.3.2")
 }
