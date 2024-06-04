@@ -13,9 +13,10 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
-import androidx.compose.animation.with
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -74,7 +75,7 @@ import com.jrb.multifunctionapp.R
 import com.jrb.multifunctionapp.model.Music
 import kotlinx.coroutines.delay
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalAnimationApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun SongScreen(playList: List<Music>, player: ExoPlayer) {
 
@@ -137,7 +138,7 @@ fun SongScreen(playList: List<Music>, player: ExoPlayer) {
 
     Box(
         modifier = Modifier
-            .fillMaxSize(), contentAlignment = Alignment.Center
+            .fillMaxSize().background(color = Color.White), contentAlignment = Alignment.Center
     ) {
         val configuration = LocalConfiguration.current
 
@@ -147,7 +148,7 @@ fun SongScreen(playList: List<Music>, player: ExoPlayer) {
              * Animates when the song is switching
              */
             AnimatedContent(targetState = playingSongIndex.intValue, transitionSpec = {
-                (scaleIn() + fadeIn()) with (scaleOut() + fadeOut())
+                (scaleIn() + fadeIn()) togetherWith (scaleOut() + fadeOut())
             }, label = "") {
                 Text(
                     text = playList[it].name, fontSize = 24.sp,
@@ -157,7 +158,7 @@ fun SongScreen(playList: List<Music>, player: ExoPlayer) {
             }
             Spacer(modifier = Modifier.height(8.dp))
             AnimatedContent(targetState = playingSongIndex.intValue, transitionSpec = {
-                (scaleIn() + fadeIn()) with (scaleOut() + fadeOut())
+                (scaleIn() + fadeIn()) togetherWith (scaleOut() + fadeOut())
             }, label = "") {
                 Text(
                     text = playList[it].artist, fontSize = 12.sp, color = Color.Black,

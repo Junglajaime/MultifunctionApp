@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MusicPlayer</string>
+    <string name="app_name">MultifunctionApp</string>
     <string name="title_activity_camera">CameraActivity</string>
     <string name="title_activity_sensor">SensorActivity</string>
 </resources>

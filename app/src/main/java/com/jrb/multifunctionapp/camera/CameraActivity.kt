@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -38,7 +39,6 @@ class CameraActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MultifunctionAppTheme() {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {
@@ -66,6 +66,8 @@ fun AppContent() {
             capturedImageUri = uri
         } else {
             Toast.makeText(context, "Failed to capture image", Toast.LENGTH_SHORT).show()
+            (context as Activity).finish()
+
         }
     }
 
