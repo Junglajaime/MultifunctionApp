@@ -17,12 +17,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jrb.multifunctionapp.camera.CameraActivity
 import com.jrb.multifunctionapp.musicplayer.MusicPlayerActivity
+import com.jrb.multifunctionapp.sensor.SensorActivity
 import com.jrb.multifunctionapp.ui.theme.MultifunctionAppTheme
 
 
@@ -58,16 +62,16 @@ fun MainScreen() {
         ){context.startActivity(Intent(context, CameraActivity::class.java))}
         Spacer(modifier = Modifier.height(16.dp))
         CustomOutlinedButton(
-            icon = Icons.Filled.Star,
+            painter = painterResource(id = R.drawable.ic_sensor),
             contentDescription = "Star Icon"
-        ){}
+        ){context.startActivity((Intent(context, SensorActivity::class.java)))}
     }
 }
 
 @Composable
-fun CustomOutlinedButton(icon: ImageVector, contentDescription: String, onClick: () -> Unit,) {
+fun CustomOutlinedButton(icon: ImageVector, contentDescription: String, onClick: () -> Unit) {
     OutlinedButton(
-        onClick = { onClick()},
+        onClick = { onClick() },
         modifier = Modifier.size(60.dp),
         shape = CircleShape,
         border = BorderStroke(1.dp, Color.Gray),
@@ -79,6 +83,27 @@ fun CustomOutlinedButton(icon: ImageVector, contentDescription: String, onClick:
     ) {
         Icon(
             imageVector = icon,
+            contentDescription = contentDescription,
+            tint = Color.White
+        )
+    }
+}
+
+@Composable
+fun CustomOutlinedButton(painter: Painter, contentDescription: String, onClick: () -> Unit) {
+    OutlinedButton(
+        onClick = { onClick() },
+        modifier = Modifier.size(60.dp),
+        shape = CircleShape,
+        border = BorderStroke(1.dp, Color.Gray),
+        contentPadding = PaddingValues(0.dp),
+        colors = ButtonDefaults.outlinedButtonColors(
+            containerColor = Color.Black.copy(alpha = 0.3f),
+            contentColor = Color.White
+        )
+    ) {
+        Icon(
+            painter = painter,
             contentDescription = contentDescription,
             tint = Color.White
         )
